@@ -16,18 +16,12 @@ export const ThemeStyleProvider = React.memo(function ({
   children: React.ReactNode;
 }) {
   const { themeStyle } = useThemeStyle();
-  const [mounted, setMounted] = React.useState(false);
 
   React.useLayoutEffect(() => {
     if (document.body.getAttribute("data-theme") !== themeStyle) {
       document.body.setAttribute("data-theme", themeStyle);
     }
-    setMounted(true);
   }, [themeStyle]);
-
-  if (!mounted) {
-    return null;
-  }
 
   return children;
 });
